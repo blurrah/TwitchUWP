@@ -1,6 +1,7 @@
 ﻿using TwitchUWP.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -12,7 +13,7 @@ namespace TwitchUWP
 {
     public class TwitchAPIHelper
     {
-        private async Task<String> CallTwitchAsync(string url)
+        private async static Task<String> CallTwitchAsync(string url)
         {
             HttpClient http = new HttpClient();
             http.DefaultRequestHeaders.Add("Accept", "application/vnd.twitchtv.v3+json");
@@ -34,6 +35,24 @@ namespace TwitchUWP
             var result = (GameWrapper)serializer.ReadObject(ms);
 
             return result;
+        }
+
+        public static async Task PopulateTwitchTopGamesAsync(ObservableCollection<Game> topGames)
+        {
+            try
+            {
+                var GameWrapper = await GetTopGamesAsync();
+
+                var games = GameWrapper.data.top;
+
+                foreach (var game in games)
+                {
+                    topGames.Add(game.game);
+                }
+            } catch (Exception)
+            {
+                return;
+            }
         }
     }
 }
