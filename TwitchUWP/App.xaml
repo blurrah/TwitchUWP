@@ -5,4 +5,17 @@
     xmlns:local="using:TwitchUWP"
     RequestedTheme="Light">
 
+    <Application.Resources>
+        <Style TargetType="TextBlock" x:Key="PageTitleStyle">
+            <Setter Property="FontSize" Value="48"/>
+            <Setter Property="Foreground" Value="#FF6441A5"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
+        </Style>
+
+        <Style TargetType="Image" x:Key="GameThumbnailStyle">
+            <Setter Property="Margin" Value="10,0"/>
+            <Setter Property="Width" Value="150"/>
+        </Style>
+    </Application.Resources>
+
 </Application>
