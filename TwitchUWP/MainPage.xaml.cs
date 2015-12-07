@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using TwitchUWP.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,9 +25,22 @@ namespace TwitchUWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public ObservableCollection<Game> topGames { get; set; }
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            topGames = new ObservableCollection<Game>();
+            RefreshGames();
+        }
+
+        public async void RefreshGames()
+        {
+            Task t = TwitchAPIHelper.PopulateTwitchTopGamesAsync(topGames);
+            await t;
         }
     }
+
+   
 }
