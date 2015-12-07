@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization.Json;
 using System.IO;
+using System.Diagnostics;
+using System.Net.Http.Headers;
 
 namespace TwitchUWP
 {
@@ -16,7 +18,8 @@ namespace TwitchUWP
         private async static Task<String> CallTwitchAsync(string url)
         {
             HttpClient http = new HttpClient();
-            http.DefaultRequestHeaders.Add("Accept", "application/vnd.twitchtv.v3+json");
+            http.DefaultRequestHeaders.Accept.Clear();
+            http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.twitchtv.v3+json"));
 
             var response = await http.GetAsync(url);
 
@@ -29,6 +32,8 @@ namespace TwitchUWP
 
             string jsonMessage = await CallTwitchAsync(topGamesURL);
 
+            Debug.WriteLine(jsonMessage);
+
             var serializer = new DataContractJsonSerializer(typeof(GameWrapper));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(jsonMessage));
 
@@ -39,16 +44,18 @@ namespace TwitchUWP
 
         public static async Task PopulateTwitchTopGamesAsync(ObservableCollection<Game> topGames)
         {
+            Debug.WriteLine("Start populating");
             try
             {
                 var GameWrapper = await GetTopGamesAsync();
 
-                var games = GameWrapper.data.top;
+                var games = GameWrapper.data;
 
-                foreach (var game in games)
+                /* foreach (var game in games)
                 {
                     topGames.Add(game.game);
-                }
+                } */
+
             } catch (Exception)
             {
                 return;
