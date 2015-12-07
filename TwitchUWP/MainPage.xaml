@@ -8,6 +8,19 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="Twitch" FontSize="48" Foreground="#FF6441A5" Margin="20,0,0,0" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Twitch" Style="{ThemeResource PageTitleStyle}" />
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Assets/hearthstone.jpg" Style="{ThemeResource GameThumbnailStyle}"/>
+                <Image Source="Assets/hearthstone.jpg" Style="{ThemeResource GameThumbnailStyle}"/>
+                <Image Source="Assets/hearthstone.jpg" Style="{ThemeResource GameThumbnailStyle}"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
