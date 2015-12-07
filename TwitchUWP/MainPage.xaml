@@ -17,18 +17,25 @@
         <TextBlock Text="Twitch" Style="{ThemeResource PageTitleStyle}" />
 
         <ScrollViewer Grid.Row="1">
-            <StackPanel Orientation="Horizontal">
-                <ListView Name="GamesListView" ItemsSource="{x:Bind topGames}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="data:Game">
-                            <Image Source="{x:Bind box.small}" Style="{ThemeResource GameThumbnailStyle}" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <Image Source="Assets/hearthstone.jpg" Style="{ThemeResource GameThumbnailStyle}"/>
-                <Image Source="Assets/hearthstone.jpg" Style="{ThemeResource GameThumbnailStyle}"/>
-                <Image Source="Assets/hearthstone.jpg" Style="{ThemeResource GameThumbnailStyle}"/>
-            </StackPanel>
+            <GridView Name="GamesListView" ItemsSource="{x:Bind topGames}">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Game">
+                        <Grid x:Name="boxartGrid">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{x:Bind box.large}" Style="{ThemeResource GameThumbnailStyle}" />
+                        </Grid>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
         </ScrollViewer>
     </Grid>
 </Page>

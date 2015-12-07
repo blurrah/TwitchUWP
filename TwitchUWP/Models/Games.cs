@@ -6,41 +6,6 @@ using System.Threading.Tasks;
 
 namespace TwitchUWP.Models
 {
-    /*
-    public class Game
-    {
-        public string title { get; set; }
-        public int id { get; set; }
-        public int viewers { get; set; }
-        public int channels { get; set; }
-        public List<BoxArt> boxarts { get; set; }
-    }
-
-    public class BoxArt
-    {
-        public string large { get; set; }
-        public string medium { get; set; }
-        public string small { get; set; }
-    }
-
-    public class GamesContainer
-    {
-        public int total { get; set; }
-        public List<Game> results { get; set; }
-    }
-
-    public class GameWrapper
-    {
-        public int code { get; set; }
-        public string status { get; set; }
-        public string copyright { get; set; }
-        public string attributionText { get; set; }
-        public string attributionHTML { get; set; }
-        public string etag { get; set; }
-        public GamesContainer data { get; set; }
-    }
-    */
-
     public class Links
     {
         public string self { get; set; }
@@ -89,16 +54,5 @@ namespace TwitchUWP.Models
         public int _total { get; set; }
         public Links _links { get; set; }
         public List<Top> top { get; set; }
-    }
-
-    public class GameWrapper
-    {
-        public int code { get; set; }
-        public string status { get; set; }
-        public string copyright { get; set; }
-        public string attributionText { get; set; }
-        public string attributionHTML { get; set; }
-        public string etag { get; set; }
-        public RootObject data { get; set; }
     }
 }

@@ -10,6 +10,7 @@ using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Diagnostics;
 using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace TwitchUWP
 {
@@ -26,35 +27,29 @@ namespace TwitchUWP
             return await response.Content.ReadAsStringAsync();
         }
 
-        private static async Task<GameWrapper> GetTopGamesAsync()
+        private static async Task<RootObject> GetTopGamesAsync()
         {
             string topGamesURL = "https://api.twitch.tv/kraken/games/top?limit=100";
 
             string jsonMessage = await CallTwitchAsync(topGamesURL);
 
-            Debug.WriteLine(jsonMessage);
-
-            var serializer = new DataContractJsonSerializer(typeof(GameWrapper));
-            var ms = new MemoryStream(Encoding.UTF8.GetBytes(jsonMessage));
-
-            var result = (GameWrapper)serializer.ReadObject(ms);
+            RootObject result = JsonConvert.DeserializeObject<RootObject>(jsonMessage);
 
             return result;
         }
 
         public static async Task PopulateTwitchTopGamesAsync(ObservableCollection<Game> topGames)
         {
-            Debug.WriteLine("Start populating");
             try
             {
                 var GameWrapper = await GetTopGamesAsync();
 
-                var games = GameWrapper.data;
+                var games = GameWrapper.top;
 
-                /* foreach (var game in games)
+                foreach (var game in games)
                 {
                     topGames.Add(game.game);
-                } */
+                }
 
             } catch (Exception)
             {
