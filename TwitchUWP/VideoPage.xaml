@@ -15,87 +15,20 @@
         <Viewbox Stretch="Uniform" StretchDirection="Both"  Grid.Row="0">
             <MediaElement Width="640" Height="360" RealTimePlayback="True" PosterSource="Assets/VideoPreLoad.png" />
         </Viewbox>
-        <StackPanel Orientation="Vertical" Margin="10,10,10,0" Grid.Row="1">
-            <Grid Width="Auto" Margin="0,0,0,5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Jasper" FontWeight="Bold" TextWrapping="NoWrap" Foreground="#FF6441A5" Margin="0,0,10,0" />
-                <TextBlock Grid.Column="1" TextWrapping="WrapWholeWords">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel varius arcu, nec pharetra dolor. Etiam sed eleifend eros.
-                </TextBlock>
-            </Grid>
-            <Grid Width="Auto" Margin="0,0,0,5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Jasper" FontWeight="Bold" TextWrapping="NoWrap" Foreground="#FF6441A5" Margin="0,0,10,0" />
-                <TextBlock Grid.Column="1" TextWrapping="WrapWholeWords">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel varius arcu, nec pharetra dolor. Etiam sed eleifend eros.
-                </TextBlock>
-            </Grid>
-            <Grid Width="Auto" Margin="0,0,0,5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Jasper" FontWeight="Bold" TextWrapping="NoWrap" Foreground="#FF6441A5" Margin="0,0,10,0" />
-                <TextBlock Grid.Column="1" TextWrapping="WrapWholeWords">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel varius arcu, nec pharetra dolor. Etiam sed eleifend eros.
-                </TextBlock>
-            </Grid>
-            <Grid Width="Auto" Margin="0,0,0,5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Jasper" FontWeight="Bold" TextWrapping="NoWrap" Foreground="#FF6441A5" Margin="0,0,10,0" />
-                <TextBlock Grid.Column="1" TextWrapping="WrapWholeWords">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel varius arcu, nec pharetra dolor. Etiam sed eleifend eros.
-                </TextBlock>
-            </Grid>
-            <Grid Width="Auto" Margin="0,0,0,5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Jasper" FontWeight="Bold" TextWrapping="NoWrap" Foreground="#FF6441A5" Margin="0,0,10,0" />
-                <TextBlock Grid.Column="1" TextWrapping="WrapWholeWords">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel varius arcu, nec pharetra dolor. Etiam sed eleifend eros.
-                </TextBlock>
-            </Grid>
-            <Grid Width="Auto" Margin="0,0,0,5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Jasper" FontWeight="Bold" TextWrapping="NoWrap" Foreground="#FF6441A5" Margin="0,0,10,0" />
-                <TextBlock Grid.Column="1" TextWrapping="WrapWholeWords">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel varius arcu, nec pharetra dolor. Etiam sed eleifend eros.
-                </TextBlock>
-            </Grid>
-            <Grid Width="Auto" Margin="0,0,0,5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Jasper" FontWeight="Bold" TextWrapping="NoWrap" Foreground="#FF6441A5" Margin="0,0,10,0" />
-                <TextBlock Grid.Column="1" TextWrapping="WrapWholeWords">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel varius arcu, nec pharetra dolor. Etiam sed eleifend eros.
-                </TextBlock>
-            </Grid>
-            <Grid Width="Auto" Margin="0,0,0,5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Jasper" FontWeight="Bold" TextWrapping="NoWrap" Foreground="#FF6441A5" Margin="0,0,10,0" />
-                <TextBlock Grid.Column="1" TextWrapping="WrapWholeWords">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel varius arcu, nec pharetra dolor. Etiam sed eleifend eros.
-                </TextBlock>
-            </Grid>
-        </StackPanel>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <Grid Width="Auto" Margin="0,0,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Jasper" FontWeight="Bold" TextWrapping="NoWrap" Foreground="#FF6441A5" Margin="0,0,10,0" />
+                    <TextBlock Grid.Column="1" TextWrapping="WrapWholeWords">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel varius arcu, nec pharetra dolor. Etiam sed eleifend eros.
+                    </TextBlock>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
