@@ -9,11 +9,11 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="200" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Viewbox Stretch="Uniform" StretchDirection="Both" Grid.Row="0">
-            <MediaElement Width="16" Height="9" />
+        <Viewbox Stretch="Uniform" StretchDirection="Both"  Grid.Row="0">
+            <MediaElement Width="640" Height="360" RealTimePlayback="True" PosterSource="Assets/VideoPreLoad.png" />
         </Viewbox>
         <StackPanel Orientation="Vertical" Margin="10,10,10,0" Grid.Row="1">
             <Grid Width="Auto" Margin="0,0,0,5">
