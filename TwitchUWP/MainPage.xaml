@@ -17,7 +17,7 @@
         <TextBlock Text="Twitch" Style="{ThemeResource PageTitleStyle}" />
 
         <ScrollViewer Grid.Row="1">
-            <GridView Name="GamesListView" ItemsSource="{x:Bind topGames}" ItemClick="GamesListView_ItemClick">
+            <GridView Name="GamesListView" ItemsSource="{x:Bind topGames}" IsItemClickEnabled="True" ItemClick="GamesListView_ItemClick">
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="data:Game">
                         <Grid x:Name="boxartGrid">
