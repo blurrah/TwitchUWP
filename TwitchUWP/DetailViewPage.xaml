@@ -9,33 +9,13 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock Text="Fallout 4" Style="{ThemeResource PageTitleStyle}" />
-
-        <ScrollViewer Grid.Row="2">
-
-            <!--StackPanel Orientation="Vertical">
-                <TextBlock Text="Borisjens"/>
-                <Image Source="http://static-cdn.jtvnw.net/previews-ttv/live_user_sirsebs-320x180.jpg"
-                   Style="{ThemeResource StreamThumbnailStyle}"/>
-
-                <TextBlock Text="Borisjens"/>
-                <Image Source="http://static-cdn.jtvnw.net/previews-ttv/live_user_sirsebs-320x180.jpg"
-                   Style="{ThemeResource StreamThumbnailStyle}"/>
-            </-->
-
+        <ScrollViewer>
             <GridView Name="GamesListView" 
                       ItemsSource="{x:Bind streams}" 
                       IsItemClickEnabled="True" 
                       ItemClick="StreamsListView_ItemClick">
-
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="data:Streamers+Stream">
-
                         <Image x:Name="StreamThumbnail"
                                Source="{x:Bind preview.large}" 
                                Style="{ThemeResource StreamThumbnailStyle}">
@@ -47,12 +27,10 @@
                             </Image.Transitions>
 
                         </Image>
-
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
-
         </ScrollViewer>
-
     </Grid>
+    
 </Page>

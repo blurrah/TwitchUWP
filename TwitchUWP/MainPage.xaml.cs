@@ -24,6 +24,10 @@ namespace TwitchUWP
         {
             this.InitializeComponent();
 
+            // Load GameOverviewPage on load
+            NavFrame.Navigate(typeof(GameOverviewPage));
+            PageTitle.Text = "Twitch";
+
             topGames = new ObservableCollection<Game>();
             RefreshGames();
         }
@@ -34,12 +38,20 @@ namespace TwitchUWP
             await t;
         }
 
+        private void BackButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            if (NavFrame.CanGoBack)
+            {
+                NavFrame.GoBack();
+            }
+        }
+
         private void GamesListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var selectedGame = (Game)e.ClickedItem;
             string gameTitle = selectedGame.name;
 
-            this.Frame.Navigate(typeof(DetailViewPage), gameTitle);
+            NavFrame.Navigate(typeof(DetailViewPage), gameTitle);
         }
     }
 

@@ -15,12 +15,19 @@
         <Style TargetType="Image" x:Key="GameThumbnailStyle">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="Width" Value="100"/>
-            <Setter Property="Height" Value="140"/>
+            <Setter Property="Height" Value="Auto"/>
         </Style>
 
         <Style TargetType="Image" x:Key="StreamThumbnailStyle">
-            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Margin" Value="10"/>
             <Setter Property="Width" Value="Auto"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="IconButton">
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+            <Setter Property="FontSize" Value="36"/>
+            <Setter Property="Background" Value="#33FFFFFF"/>
+            <Setter Property="Foreground" Value="#FF6441A5"/>
         </Style>
     </Application.Resources>
 
