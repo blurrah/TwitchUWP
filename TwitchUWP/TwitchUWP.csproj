@@ -107,6 +107,7 @@
     </Compile>
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Games.cs" />
+    <Compile Include="Models\Streamers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TwitchAPIHelper.cs" />
     <Compile Include="VideoPage.xaml.cs">
