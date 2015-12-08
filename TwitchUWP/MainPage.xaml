@@ -10,32 +10,37 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Twitch" Style="{ThemeResource PageTitleStyle}" />
+        <TextBlock Text="Twitch" Style="{ThemeResource PageTitleStyle}"/>
 
         <ScrollViewer Grid.Row="1">
-            <GridView Name="GamesListView" ItemsSource="{x:Bind topGames}" IsItemClickEnabled="True" ItemClick="GamesListView_ItemClick">
+
+            <GridView Name="GamesListView" 
+                      ItemsSource="{x:Bind topGames}" 
+                      IsItemClickEnabled="True" 
+                      ItemClick="GamesListView_ItemClick">
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="data:Game">
-                        <Grid x:Name="boxartGrid">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="{x:Bind box.large}" Style="{ThemeResource GameThumbnailStyle}" />
-                        </Grid>
+                        
+                        <Image x:Name="GameThumbnail"
+                               Source="{x:Bind box.large}" 
+                               Style="{ThemeResource GameThumbnailStyle}">
+
+                            <Image.Transitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition/>
+                                </TransitionCollection>
+                            </Image.Transitions>
+                          
+                        </Image>
+                        
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
-            </ScrollViewer>
+        </ScrollViewer>
     </Grid>
+
 </Page>
