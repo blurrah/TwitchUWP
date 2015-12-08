@@ -16,7 +16,7 @@
 
         <TextBlock Text="{x:Bind gameTitle}" Style="{ThemeResource PageTitleStyle}" TextTrimming="CharacterEllipsis" />
 
-        <ScrollViewer Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+        <ScrollViewer Grid.Row="1">
             <GridView Name="StreamsListView"
                       ItemsSource="{x:Bind streams}" 
                       IsItemClickEnabled="True" 
