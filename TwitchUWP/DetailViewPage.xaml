@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="TwitchUWP.DetailViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TwitchUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:TwitchUWP.Models"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Fallout 4" Style="{ThemeResource PageTitleStyle}" />
+
+        <ScrollViewer Grid.Row="2">
+
+            <!--StackPanel Orientation="Vertical">
+                <TextBlock Text="Borisjens"/>
+                <Image Source="http://static-cdn.jtvnw.net/previews-ttv/live_user_sirsebs-320x180.jpg"
+                   Style="{ThemeResource StreamThumbnailStyle}"/>
+
+                <TextBlock Text="Borisjens"/>
+                <Image Source="http://static-cdn.jtvnw.net/previews-ttv/live_user_sirsebs-320x180.jpg"
+                   Style="{ThemeResource StreamThumbnailStyle}"/>
+            </-->
+
+            <GridView Name="GamesListView" 
+                      ItemsSource="{x:Bind streams}" 
+                      IsItemClickEnabled="True" 
+                      ItemClick="StreamsListView_ItemClick">
+
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Stream">
+
+                        <Image x:Name="StreamThumbnail"
+                               Source="{x:Bind preview.large}" 
+                               Style="{ThemeResource StreamThumbnailStyle}">
+
+                            <Image.Transitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition/>
+                                </TransitionCollection>
+                            </Image.Transitions>
+
+                        </Image>
+
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+
+        </ScrollViewer>
+
+    </Grid>
+</Page>

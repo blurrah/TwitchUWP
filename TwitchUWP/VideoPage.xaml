@@ -5,6 +5,7 @@
     xmlns:local="using:TwitchUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:TwitchUWP.Models"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -15,19 +16,9 @@
         <Viewbox Stretch="Uniform" StretchDirection="Both"  Grid.Row="0">
             <MediaElement Width="640" Height="360" RealTimePlayback="True" PosterSource="Assets/VideoPreLoad.png" />
         </Viewbox>
-
-        <ScrollViewer Grid.Row="1">
-            <StackPanel Orientation="Vertical" Margin="10">
-                <Grid Width="Auto" Margin="0,0,0,5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Jasper" FontWeight="Bold" TextWrapping="NoWrap" Foreground="#FF6441A5" Margin="0,0,10,0" />
-                    <TextBlock Grid.Column="1" TextWrapping="WrapWholeWords">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel varius arcu, nec pharetra dolor. Etiam sed eleifend eros.
-                    </TextBlock>
-                </Grid>
+        <ScrollViewer Grid.Row="1" Name="ChatScrollViewer">
+            <StackPanel Margin="10" Name="ChatMessageView">
+                <!-- Chat messages go in here... -->
             </StackPanel>
         </ScrollViewer>
     </Grid>
