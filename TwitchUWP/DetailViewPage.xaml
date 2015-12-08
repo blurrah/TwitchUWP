@@ -34,7 +34,7 @@
                       ItemClick="StreamsListView_ItemClick">
 
                 <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="data:Stream">
+                    <DataTemplate x:DataType="data:Streamers+Stream">
 
                         <Image x:Name="StreamThumbnail"
                                Source="{x:Bind preview.large}" 
