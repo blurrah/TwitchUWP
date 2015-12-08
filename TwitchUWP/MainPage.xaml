@@ -32,7 +32,7 @@
 
                             <Image.Transitions>
                                 <TransitionCollection>
-                                    <EntranceThemeTransition/>
+                                    <EntranceThemeTransition FromHorizontalOffset="100" FromVerticalOffset="50"/>
                                 </TransitionCollection>
                             </Image.Transitions>
                           
