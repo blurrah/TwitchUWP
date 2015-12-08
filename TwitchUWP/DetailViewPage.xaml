@@ -5,7 +5,7 @@
     xmlns:local="using:TwitchUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:data="using:TwitchUWP.Models"
+    xmlns:data="using:TwitchUWP.Models.Streamers"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
