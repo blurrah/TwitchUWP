@@ -22,6 +22,7 @@
                       ItemsSource="{x:Bind topGames}" 
                       IsItemClickEnabled="True" 
                       ItemClick="GamesListView_ItemClick">
+                
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="data:Game">
                         

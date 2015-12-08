@@ -5,6 +5,7 @@
     xmlns:local="using:TwitchUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:TwitchUWP.Models"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -15,11 +16,9 @@
 
         <TextBlock Text="Fallout 4" Style="{ThemeResource PageTitleStyle}" />
 
-        <ScrollViewer Grid.Row="2"
-                      HorizontalScrollBarVisibility="Auto" 
-                      VerticalScrollBarVisibility="Hidden">
+        <ScrollViewer Grid.Row="2">
 
-            <StackPanel Orientation="Vertical">
+            <!--StackPanel Orientation="Vertical">
                 <TextBlock Text="Borisjens"/>
                 <Image Source="http://static-cdn.jtvnw.net/previews-ttv/live_user_sirsebs-320x180.jpg"
                    Style="{ThemeResource StreamThumbnailStyle}"/>
@@ -27,7 +26,31 @@
                 <TextBlock Text="Borisjens"/>
                 <Image Source="http://static-cdn.jtvnw.net/previews-ttv/live_user_sirsebs-320x180.jpg"
                    Style="{ThemeResource StreamThumbnailStyle}"/>
-            </StackPanel>
+            </-->
+
+            <GridView Name="GamesListView" 
+                      ItemsSource="{x:Bind topStreams}" 
+                      IsItemClickEnabled="True" 
+                      ItemClick="StreamsListView_ItemClick">
+
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Streams">
+
+                        <Image x:Name="StreamThumbnail"
+                               Source="{x:Bind box.large}" 
+                               Style="{ThemeResource GameThumbnailStyle}">
+
+                            <Image.Transitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition/>
+                                </TransitionCollection>
+                            </Image.Transitions>
+
+                        </Image>
+
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
 
         </ScrollViewer>
 
