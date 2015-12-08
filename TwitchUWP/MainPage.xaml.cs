@@ -40,6 +40,14 @@ namespace TwitchUWP
             Task t = TwitchAPIHelper.PopulateTwitchTopGamesAsync(topGames);
             await t;
         }
+
+        private void GamesListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var selectedGame = (Game)e.ClickedItem;
+            string gameTitle = selectedGame.name;
+
+            Frame.Navigate(typeof(TitleViewPage), gameTitle);
+        }
     }
 
    
