@@ -27,6 +27,7 @@ namespace TwitchUWP
     public sealed partial class DetailViewPage : Page
     {
         public ObservableCollection<Streamers.Stream> streams { get; set; }
+        public string gameTitle;
 
         public DetailViewPage()
         {
@@ -39,7 +40,7 @@ namespace TwitchUWP
         {
             base.OnNavigatedTo(e);
 
-            string gameTitle = (string)e.Parameter;
+            gameTitle = (string)e.Parameter;
 
             loadStreamers(gameTitle);
         }
