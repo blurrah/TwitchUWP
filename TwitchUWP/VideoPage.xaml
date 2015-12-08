@@ -5,6 +5,7 @@
     xmlns:local="using:TwitchUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:TwitchUWP.Models"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -17,18 +18,23 @@
         </Viewbox>
 
         <ScrollViewer Grid.Row="1">
-            <StackPanel Orientation="Vertical" Margin="10">
-                <Grid Width="Auto" Margin="0,0,0,5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Jasper" FontWeight="Bold" TextWrapping="NoWrap" Foreground="#FF6441A5" Margin="0,0,10,0" />
-                    <TextBlock Grid.Column="1" TextWrapping="WrapWholeWords">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel varius arcu, nec pharetra dolor. Etiam sed eleifend eros.
-                    </TextBlock>
-                </Grid>
-            </StackPanel>
+            <GridView Name="ChatView" ItemsSource="{x:Bind chatMessages}" Margin="10">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Message">
+                        <Grid x:Name="ChatMessages">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{x:Bind user}" Margin="0,0,5,0" Grid.Column="0" />
+                            <TextBlock Text="{x:Bind content}" Grid.Column="1" />
+                        </Grid>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
         </ScrollViewer>
     </Grid>
 </Page>
