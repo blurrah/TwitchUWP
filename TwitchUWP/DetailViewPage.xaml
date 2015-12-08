@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{x:Bind gameTitle}" Style="{ThemeResource PageTitleStyle}" />
+        <TextBlock Text="{x:Bind gameTitle}" Style="{ThemeResource PageTitleStyle}" TextTrimming="CharacterEllipsis" />
 
         <ScrollViewer Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <GridView Name="StreamsListView"
@@ -25,7 +25,7 @@
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="data:Streamers+Stream">
 
-                        <Grid>
+                        <Grid Background="Black" Margin="0,0,-5,0">
                             <Viewbox Stretch="Uniform" StretchDirection="Both">
                                 <Image x:Name="StreamThumbnail"
                                     Source="{x:Bind preview.large}" 

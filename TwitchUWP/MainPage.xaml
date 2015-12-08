@@ -16,7 +16,7 @@
 
         <TextBlock Text="Twitch" Style="{ThemeResource PageTitleStyle}"/>
 
-        <ScrollViewer Grid.Row="1">
+        <ScrollViewer Grid.Row="1" Margin="5,0,0,0">
 
             <GridView Name="GamesListView" 
                       ItemsSource="{x:Bind topGames}" 
@@ -26,17 +26,19 @@
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="data:Game">
 
-                        <Image x:Name="GameThumbnail"
+                        <Grid Background="#FFA68ED2" Margin="5">
+                            <Image x:Name="GameThumbnail"
                                Source="{x:Bind box.large}" 
                                Style="{ThemeResource GameThumbnailStyle}">
 
-                            <Image.Transitions>
-                                <TransitionCollection>
-                                    <EntranceThemeTransition FromHorizontalOffset="100" FromVerticalOffset="50"/>
-                                </TransitionCollection>
-                            </Image.Transitions>
+                                <Image.Transitions>
+                                    <TransitionCollection>
+                                        <EntranceThemeTransition FromHorizontalOffset="100" FromVerticalOffset="50"/>
+                                    </TransitionCollection>
+                                </Image.Transitions>
 
-                        </Image>
+                            </Image>
+                        </Grid>
 
                     </DataTemplate>
                 </GridView.ItemTemplate>
