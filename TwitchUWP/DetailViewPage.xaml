@@ -29,16 +29,16 @@
             </-->
 
             <GridView Name="GamesListView" 
-                      ItemsSource="{x:Bind topStreams}" 
+                      ItemsSource="{x:Bind streams}" 
                       IsItemClickEnabled="True" 
                       ItemClick="StreamsListView_ItemClick">
 
                 <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="data:Streams">
+                    <DataTemplate x:DataType="data:Stream">
 
                         <Image x:Name="StreamThumbnail"
-                               Source="{x:Bind box.large}" 
-                               Style="{ThemeResource GameThumbnailStyle}">
+                               Source="{x:Bind preview.large}" 
+                               Style="{ThemeResource StreamThumbnailStyle}">
 
                             <Image.Transitions>
                                 <TransitionCollection>
