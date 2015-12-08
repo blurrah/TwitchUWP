@@ -49,5 +49,10 @@ namespace TwitchUWP
             Task t = TwitchAPIHelper.PopulateTwitchStreamersAsync(gameTitle, streams);
             await t;
         }
+
+        private void StreamsListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
     }
 }

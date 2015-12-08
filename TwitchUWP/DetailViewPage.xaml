@@ -5,7 +5,7 @@
     xmlns:local="using:TwitchUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:data="using:TwitchUWP.Models.Streamers"
+    xmlns:data="using:TwitchUWP.Models"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -34,7 +34,7 @@
                       ItemClick="StreamsListView_ItemClick">
 
                 <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="data:Stream">
+                    <DataTemplate x:DataType="data:Streamers+Stream">
 
                         <Image x:Name="StreamThumbnail"
                                Source="{x:Bind preview.large}" 
