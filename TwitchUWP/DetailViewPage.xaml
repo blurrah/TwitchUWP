@@ -14,21 +14,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Fallout 4" Style="{ThemeResource PageTitleStyle}" />
+        <TextBlock Text="{x:Bind gameTitle}" Style="{ThemeResource PageTitleStyle}" />
 
-        <ScrollViewer Grid.Row="2">
-
-            <!--StackPanel Orientation="Vertical">
-                <TextBlock Text="Borisjens"/>
-                <Image Source="http://static-cdn.jtvnw.net/previews-ttv/live_user_sirsebs-320x180.jpg"
-                   Style="{ThemeResource StreamThumbnailStyle}"/>
-
-                <TextBlock Text="Borisjens"/>
-                <Image Source="http://static-cdn.jtvnw.net/previews-ttv/live_user_sirsebs-320x180.jpg"
-                   Style="{ThemeResource StreamThumbnailStyle}"/>
-            </-->
-
-            <GridView Name="GamesListView" 
+        <ScrollViewer Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <GridView Name="StreamsListView"
                       ItemsSource="{x:Bind streams}" 
                       IsItemClickEnabled="True" 
                       ItemClick="StreamsListView_ItemClick">
@@ -36,22 +25,40 @@
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="data:Streamers+Stream">
 
-                        <Image x:Name="StreamThumbnail"
-                               Source="{x:Bind preview.large}" 
-                               Style="{ThemeResource StreamThumbnailStyle}">
+                        <Grid>
+                            <Viewbox Stretch="Uniform" StretchDirection="Both">
+                                <Image x:Name="StreamThumbnail"
+                                    Source="{x:Bind preview.large}" 
+                                    Style="{ThemeResource StreamThumbnailStyle}">
 
-                            <Image.Transitions>
-                                <TransitionCollection>
-                                    <EntranceThemeTransition/>
-                                </TransitionCollection>
-                            </Image.Transitions>
+                                    <Image.Transitions>
+                                        <TransitionCollection>
+                                            <EntranceThemeTransition/>
+                                        </TransitionCollection>
+                                    </Image.Transitions>
 
-                        </Image>
+                                </Image>
+                            </Viewbox>
+
+                            <StackPanel VerticalAlignment="Bottom" Padding="0,30,0,10">
+                                <StackPanel.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#CC000000" Offset="1"/>
+                                        <GradientStop/>
+                                    </LinearGradientBrush>
+                                </StackPanel.Background>
+                                <TextBlock Text="{x:Bind channel.display_name}" FontSize="14" FontWeight="Bold" Style="{ThemeResource StreamTextStyle}" />
+                                <TextBlock Text="{x:Bind channel.status}" FontSize="12" TextTrimming="CharacterEllipsis" Style="{ThemeResource StreamTextStyle}"/>
+                                <TextBlock Foreground="#FFA68ED2" FontSize="12" Style="{ThemeResource StreamTextStyle}">
+                                    <Run Text="{x:Bind viewers}" FontWeight="Bold" />
+                                    <Run Text="viewers" />
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
 
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
-
         </ScrollViewer>
 
     </Grid>
