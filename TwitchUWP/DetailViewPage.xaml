@@ -21,9 +21,9 @@
                       ItemsSource="{x:Bind streams}" 
                       IsItemClickEnabled="True" 
                       ItemClick="StreamsListView_ItemClick">
-
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="data:Streamers+Stream">
+
 
                         <Grid Background="Black" Margin="0,0,-5,0">
                             <Viewbox Stretch="Uniform" StretchDirection="Both">
@@ -60,6 +60,6 @@
                 </GridView.ItemTemplate>
             </GridView>
         </ScrollViewer>
-
     </Grid>
+    
 </Page>
