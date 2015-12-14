@@ -35,8 +35,14 @@ namespace TwitchUWP
             this.InitializeComponent();
 
             chatMessages = new ObservableCollection<Message>();
+        }
 
-            RenderMessage("Jasper", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et quam id ex tempus varius non et mi.");
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            Streamers.Channel a = (Streamers.Channel)e.Parameter;
+
+            RenderMessage("ID", a.status);
         }
 
         private void RenderMessage(string name, string content)

@@ -53,7 +53,10 @@ namespace TwitchUWP
 
         private void StreamsListView_ItemClick(object sender, ItemClickEventArgs e)
         {
+            var selectedStream = (Streamers.Stream)e.ClickedItem;
+            Streamers.Channel channel = selectedStream.channel;
 
+            this.Frame.Navigate(typeof(VideoPage), channel);
         }
     }
 }
