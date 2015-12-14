@@ -8,21 +8,34 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace TwitchUWP
 {
     public class TwitchHLSHelper
     {
-        public async Task LoadTwitchStream(string channelName, ObservableCollection<LiveStream> livestream) {
+        public static async Task LoadTwitchStream(string channelName, LiveStream livestream) {
             try
             {
-                AccessToken.RootObject token = await GetTokenAsync(channelName);
+                AccessToken.RootObject accessToken = await GetTokenAsync(channelName);
+                Random random = new Random();
 
+                var randomInt = random.Next(10000000, 99999999);
 
+                String token = accessToken.token;
+                String sig = accessToken.sig;
+
+                String resultje = await GetStreamListAsync(channelName, token, sig, randomInt);
+
+                livestream.sourceStream = resultje;
+
+                Debug.WriteLine(resultje);
             }
+            catch (Exception) { }
         }
 
-        private async Task<AccessToken.RootObject> GetTokenAsync(string channelName)
+        private static async Task<AccessToken.RootObject> GetTokenAsync(string channelName)
         {
             string accessTokenURL = String.Format("https://api.twitch.tv/api/channels/{0}/access_token", channelName);
 
@@ -30,10 +43,29 @@ namespace TwitchUWP
 
             AccessToken.RootObject result = JsonConvert.DeserializeObject<AccessToken.RootObject>(jsonMessage);
 
+            Debug.WriteLine(result);
+
             return result;
         }
 
-        private async static Task<String> CallTwitchAsync(string url)
+        /// <summary>
+        /// Gets a list of HLS streams based on chosen streamer
+        /// </summary>
+        /// <param name="channelName">Name of channel</param>
+        /// <param name="token">Channel access token</param>
+        /// <param name="sig">Channel signature</param>
+        /// <param name="random">Random integer payload</param>
+        /// <returns>M3u8 file containing the streams</returns>
+        private static async Task<String> GetStreamListAsync(string channelName, string token, string sig, int random)
+        {
+            string streamListURL = String.Format("http://usher.twitch.tv/api/channel/hls/{0}.m3u8?player=twitchweb&token={1}&sig={2}&allow_audio_only=true&allow_source=true&type=any&p={3}", channelName, token, sig, random);
+
+            String realResult = await ParseM3UAsync(streamListURL);
+
+            return realResult;
+        }
+
+        private static async Task<String> CallTwitchAsync(string url)
         {
             HttpClient http = new HttpClient();
             http.DefaultRequestHeaders.Accept.Clear();
@@ -42,6 +74,32 @@ namespace TwitchUWP
             var response = await http.GetAsync(url);
 
             return await response.Content.ReadAsStringAsync();
+        }
+
+        private async static Task<String> ParseM3UAsync(string url)
+        {
+            HttpClient http = new HttpClient();
+
+            var data = await http.GetStringAsync(url);
+
+            var lines = data.Split('\n');
+
+            if (lines.Any()) {
+                if(lines[0] != "#EXTM3U")
+                {
+                    return "null";
+                }
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    if (lines[i].Contains("#EXT-X-STREAM") && lines[i].Contains("VIDEO=\"chunked\""))
+                    {
+                        return lines[i + 1];
+                    }
+                }
+            }
+
+            return "null";
         }
     }
 }

@@ -27,7 +27,11 @@ namespace TwitchUWP
     public sealed partial class DetailViewPage : Page
     {
         public ObservableCollection<Streamers.Stream> streams { get; set; }
+<<<<<<< 2429cd67741c2188be89e47f2c3af4363c3e6f63
         public string gameTitle;
+=======
+        public LiveStream liveStreams { get; set; }
+>>>>>>> adds hls url downloading
 
         public DetailViewPage()
         {
@@ -51,12 +55,15 @@ namespace TwitchUWP
             await t;
         }
 
-        private void StreamsListView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void StreamsListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var selectedStream = (Streamers.Stream)e.ClickedItem;
             Streamers.Channel channel = selectedStream.channel;
 
-            this.Frame.Navigate(typeof(VideoPage), channel);
+            Task t = TwitchHLSHelper.LoadTwitchStream(channel.name, liveStreams);
+            await t;
+
+            this.Frame.Navigate(typeof(VideoPage), channel);   
         }
     }
 }
