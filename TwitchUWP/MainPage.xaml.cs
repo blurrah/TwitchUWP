@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using TwitchUWP.Models;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
@@ -24,9 +25,11 @@ namespace TwitchUWP
         {
             this.InitializeComponent();
 
+            // Hide Back Button on the first page
+            BackButton.Visibility = Visibility.Collapsed;
+
             // Load GameOverviewPage on load
             NavFrame.Navigate(typeof(GameOverviewPage));
-            PageTitle.Text = "Twitch";
 
             topGames = new ObservableCollection<Game>();
             RefreshGames();
@@ -38,20 +41,12 @@ namespace TwitchUWP
             await t;
         }
 
-        private void BackButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             if (NavFrame.CanGoBack)
             {
                 NavFrame.GoBack();
             }
-        }
-
-        private void GamesListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            var selectedGame = (Game)e.ClickedItem;
-            string gameTitle = selectedGame.name;
-
-            NavFrame.Navigate(typeof(DetailViewPage), gameTitle);
         }
     }
 
