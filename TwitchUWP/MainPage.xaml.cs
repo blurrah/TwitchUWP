@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using TwitchUWP.Models;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -19,33 +20,37 @@ namespace TwitchUWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public ObservableCollection<Game> topGames { get; set; }
 
         public MainPage()
         {
             this.InitializeComponent();
 
-            // Hide Back Button on the first page
-            BackButton.Visibility = Visibility.Collapsed;
+            SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+            NavFrame.Navigated += OnNavigated;
 
             // Load GameOverviewPage on load
             NavFrame.Navigate(typeof(GameOverviewPage));
 
-            topGames = new ObservableCollection<Game>();
-            RefreshGames();
         }
 
-        public async void RefreshGames()
+        private void OnBackRequested(object sender, BackRequestedEventArgs e)
         {
-            Task t = TwitchAPIHelper.PopulateTwitchTopGamesAsync(topGames);
-            await t;
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (NavFrame.CanGoBack)
+            if (NavFrame != null && NavFrame.CanGoBack)
             {
+                e.Handled = true;
                 NavFrame.GoBack();
+            }
+        }
+
+        private void OnNavigated(object sender, NavigationEventArgs e)
+        {
+            if (e.Parameter != null && NavFrame.CanGoBack)
+            {
+                PageTitle.Text = e.Parameter.ToString();
+            }
+            else
+            {
+                PageTitle.Text = "Twitch";
             }
         }
     }

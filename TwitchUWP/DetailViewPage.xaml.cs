@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using TwitchUWP.Models;
 using System.Diagnostics;
+using Windows.UI.Core;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -31,6 +32,9 @@ namespace TwitchUWP
         public DetailViewPage()
         {
             this.InitializeComponent();
+
+            var manager = SystemNavigationManager.GetForCurrentView();
+            manager.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
 
             streams = new ObservableCollection<Streamers.Stream>();
         }

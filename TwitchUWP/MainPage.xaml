@@ -14,15 +14,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal">
-            <Button Name="BackButton" 
-                    Content="&#xE0C4;"
-                    Style="{ThemeResource IconButton}" Click="BackButton_Click"/>
-            
-            <TextBlock Name="PageTitle"
+        <TextBlock Name="PageTitle"
                        Text="Twitch"
-                       Style="{ThemeResource PageTitleStyle}"/>
-        </StackPanel>
+                       Style="{ThemeResource PageTitleStyle}"
+                       TextTrimming="CharacterEllipsis" />
 
         <Frame Name="NavFrame" Grid.Row="1"></Frame>
     </Grid>

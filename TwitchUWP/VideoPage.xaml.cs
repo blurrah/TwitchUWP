@@ -8,6 +8,7 @@ using TwitchUWP.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -33,6 +34,9 @@ namespace TwitchUWP
         public VideoPage()
         {
             this.InitializeComponent();
+
+            var manager = SystemNavigationManager.GetForCurrentView();
+            manager.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
 
             chatMessages = new ObservableCollection<Message>();
 
