@@ -14,7 +14,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Viewbox Stretch="Uniform" StretchDirection="Both"  Grid.Row="0">
-            <MediaElement Width="640" Height="360" RealTimePlayback="True" PosterSource="Assets/VideoPreLoad.png" />
+            <MediaElement Name="StreamPlayer" Width="640" Height="360" RealTimePlayback="True" PosterSource="Assets/VideoPreLoad.png" />
         </Viewbox>
         <ScrollViewer Grid.Row="1" Name="ChatScrollViewer">
             <StackPanel Margin="10" Name="ChatMessageView">

@@ -4,9 +4,11 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using TwitchUWP.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.Streaming.Adaptive;
 using Windows.UI;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
@@ -29,20 +31,39 @@ namespace TwitchUWP
     {
 
         public ObservableCollection<Message> chatMessages { get; set; }
+        public LiveStream liveStream { get; set; }
 
         public VideoPage()
         {
             this.InitializeComponent();
 
             chatMessages = new ObservableCollection<Message>();
+            liveStream = new LiveStream();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            Streamers.Channel a = (Streamers.Channel)e.Parameter;
+            Streamers.Channel streamer = (Streamers.Channel)e.Parameter;
 
-            RenderMessage("ID", a.status);
+            RenderMessage("ID", streamer.status);
+
+            loadVideo(streamer.name);
+        }
+
+        private async void loadVideo(string name) {
+            Task t = TwitchHLSHelper.LoadTwitchStream(name, liveStream);
+            await t;
+
+            Uri streamUrl = new Uri(liveStream.sourceStream);
+            var result = await AdaptiveMediaSource.CreateFromUriAsync(streamUrl);
+
+            if (result.Status == AdaptiveMediaSourceCreationStatus.Success)
+            {
+                var astream = result.MediaSource;
+                StreamPlayer.SetMediaStreamSource(astream);
+            }
+
         }
 
         private void RenderMessage(string name, string content)
