@@ -9,7 +9,8 @@
         <Style TargetType="TextBlock" x:Key="PageTitleStyle">
             <Setter Property="FontSize" Value="32"/>
             <Setter Property="Foreground" Value="#FF6441A5"/>
-            <Setter Property="Margin" Value="10,0,10,5"/>
+            <Setter Property="Margin" Value="5,0"/>
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         </Style>
 
         <Style TargetType="Image" x:Key="GameThumbnailStyle">

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TwitchUWP.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -30,6 +31,9 @@ namespace TwitchUWP
         public GameOverviewPage()
         {
             this.InitializeComponent();
+
+            var manager = SystemNavigationManager.GetForCurrentView();
+            manager.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
 
             topGames = new ObservableCollection<Game>();
             RefreshGames();
