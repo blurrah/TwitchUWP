@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using TwitchUWP.Models;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
@@ -18,28 +20,38 @@ namespace TwitchUWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public ObservableCollection<Game> topGames { get; set; }
 
         public MainPage()
         {
             this.InitializeComponent();
 
-            topGames = new ObservableCollection<Game>();
-            RefreshGames();
+            SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+            NavFrame.Navigated += OnNavigated;
+
+            // Load GameOverviewPage on load
+            NavFrame.Navigate(typeof(GameOverviewPage));
+
         }
 
-        public async void RefreshGames()
+        private void OnBackRequested(object sender, BackRequestedEventArgs e)
         {
-            Task t = TwitchAPIHelper.PopulateTwitchTopGamesAsync(topGames);
-            await t;
+            if (NavFrame != null && NavFrame.CanGoBack)
+            {
+                e.Handled = true;
+                NavFrame.GoBack();
+            }
         }
 
-        private void GamesListView_ItemClick(object sender, ItemClickEventArgs e)
+        private void OnNavigated(object sender, NavigationEventArgs e)
         {
-            var selectedGame = (Game)e.ClickedItem;
-            string gameTitle = selectedGame.name;
-
-            this.Frame.Navigate(typeof(DetailViewPage), gameTitle);
+            if (e.Parameter != null && NavFrame.CanGoBack)
+            {
+                PageTitle.Text = e.Parameter.ToString();
+            }
+            else
+            {
+                PageTitle.Text = "Twitch";
+            }
         }
     }
 

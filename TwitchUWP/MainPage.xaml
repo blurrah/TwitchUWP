@@ -14,36 +14,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Twitch" Style="{ThemeResource PageTitleStyle}"/>
+        <TextBlock Name="PageTitle"
+                       Text="Twitch"
+                       Style="{ThemeResource PageTitleStyle}"
+                       TextTrimming="CharacterEllipsis" />
 
-        <ScrollViewer Grid.Row="1" Margin="5,0,0,0">
-
-            <GridView Name="GamesListView" 
-                      ItemsSource="{x:Bind topGames}" 
-                      IsItemClickEnabled="True" 
-                      ItemClick="GamesListView_ItemClick">
-                
-                <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="data:Game">
-
-                        <Grid Background="#FFA68ED2" Margin="5">
-                            <Image x:Name="GameThumbnail"
-                               Source="{x:Bind box.large}" 
-                               Style="{ThemeResource GameThumbnailStyle}">
-
-                                <Image.Transitions>
-                                    <TransitionCollection>
-                                        <EntranceThemeTransition FromHorizontalOffset="100" FromVerticalOffset="50"/>
-                                    </TransitionCollection>
-                                </Image.Transitions>
-
-                            </Image>
-                        </Grid>
-
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
-        </ScrollViewer>
+        <Frame Name="NavFrame" Grid.Row="1"></Frame>
     </Grid>
 
 </Page>
