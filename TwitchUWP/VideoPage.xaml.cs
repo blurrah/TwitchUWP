@@ -52,9 +52,10 @@ namespace TwitchUWP
             Streamers.Channel streamer = (Streamers.Channel)e.Parameter;
 
             Uri uri = new Uri("http://www.twitch.tv/" + streamer.name + "/chat?popout=");
- 
+
             chatWebView.Navigate(uri);
-            loadVideo(streamer.name);
+
+            //loadVideo(streamer.name);
         }
 
         private async void loadVideo(string name) {
@@ -71,6 +72,21 @@ namespace TwitchUWP
             }
 
         }
+
+        private async void chatWebView_LoadCompleted(object sender, NavigationEventArgs e)
+        {
+            try
+            {
+                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('chat-header')[0].style.display='none';" });
+                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('textarea-contain')[0].style.display='none';" });
+                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('button primary float-right send-chat-button')[0].style.display='none';" });
+            }
+            catch (Exception)
+            {
+                //do something
+            }    
+        }
+
 
         //private void RenderMessage(string name, string content)
         //{
