@@ -53,6 +53,7 @@ namespace TwitchUWP
 
             Uri uri = new Uri("http://www.twitch.tv/" + streamer.name + "/chat?popout=");
 
+            chatWebView.LoadCompleted += chatWebView_LoadCompleted;
             chatWebView.Navigate(uri);
 
             //loadVideo(streamer.name);
