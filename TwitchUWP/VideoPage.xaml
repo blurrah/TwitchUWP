@@ -16,6 +16,6 @@
         <Viewbox Stretch="Uniform" StretchDirection="Both"  Grid.Row="0">
             <MediaElement Name="StreamPlayer" Width="640" Height="360" RealTimePlayback="True" PosterSource="Assets/VideoPreLoad.png" />
         </Viewbox>
-        <WebView Grid.Row="1" x:Name="chatWebView"/>
+        <WebView Grid.Row="1" Height="Auto" x:Name="chatWebView"/>
     </Grid>
 </Page>
