@@ -56,7 +56,7 @@ namespace TwitchUWP
             chatWebView.LoadCompleted += chatWebView_LoadCompleted;
             chatWebView.Navigate(uri);
 
-            //loadVideo(streamer.name);
+            loadVideo(streamer.name);
         }
 
         private async void loadVideo(string name) {
@@ -81,38 +81,13 @@ namespace TwitchUWP
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('button glyph-only left tooltip')[0].style.display='none';" });
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('textarea-contain')[0].style.display='none';" });
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('button primary float-right send-chat-button')[0].style.display='none';" });
+
                 String height = await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('chat-room')[0].clientHeight.toString();" });
-                int x = Int32.Parse(height);
-                x = x + 70;
+                int x = Int32.Parse(height) + 70;
                 string newHeight = x.ToString() + "px";
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('chat-room')[0].setAttribute(\"style\",\"height:" + newHeight + "\");" });
             }
-            catch (Exception)
-            {
-                //do something
-            }    
+            catch (Exception){ }    
         }
-
-
-        //private void RenderMessage(string name, string content)
-        //{
-        //    TextBlock tb = new TextBlock();
-        //    tb.Margin = new Thickness(0, 0, 0, 5);
-        //    tb.TextWrapping = TextWrapping.WrapWholeWords;
-
-        //    Run renderName = new Run();
-        //    renderName.Text = name + ": ";
-        //    renderName.FontWeight = FontWeights.Bold;
-        //    renderName.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x64, 0x41, 0xA5));
-
-        //    Run renderContent = new Run();
-        //    renderContent.Text = content;
-
-        //    tb.Inlines.Add(renderName);
-        //    tb.Inlines.Add(renderContent);
-
-        //    ChatMessageView.Children.Add(tb);
-        //    ChatScrollViewer.ChangeView(0.0f, ChatScrollViewer.ExtentHeight, 1.0f);
-        //}
     }
 }
