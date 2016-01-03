@@ -56,7 +56,7 @@ namespace TwitchUWP
             chatWebView.LoadCompleted += chatWebView_LoadCompleted;
             chatWebView.Navigate(uri);
 
-            loadVideo(streamer.name);
+            //loadVideo(streamer.name);
         }
 
         private async void loadVideo(string name) {
@@ -81,11 +81,7 @@ namespace TwitchUWP
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('button glyph-only left tooltip')[0].style.display='none';" });
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('textarea-contain')[0].style.display='none';" });
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('button primary float-right send-chat-button')[0].style.display='none';" });
-
-                String height = await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('chat-room')[0].clientHeight.toString();" });
-                int x = Int32.Parse(height) + 70;
-                string newHeight = x.ToString() + "px";
-                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('chat-room')[0].setAttribute(\"style\",\"height:" + newHeight + "\");" });
+                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('chat-room')[0].setAttribute(\"style\", \"bottom:-70px\")" });
             }
             catch (Exception){ }    
         }
