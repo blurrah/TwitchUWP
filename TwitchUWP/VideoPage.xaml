@@ -16,10 +16,6 @@
         <Viewbox Stretch="Uniform" StretchDirection="Both"  Grid.Row="0">
             <MediaElement Name="StreamPlayer" Width="640" Height="360" RealTimePlayback="True" PosterSource="Assets/VideoPreLoad.png" />
         </Viewbox>
-        <ScrollViewer Grid.Row="1" Name="ChatScrollViewer">
-            <StackPanel Margin="10" Name="ChatMessageView">
-                <!-- Chat messages go in here... -->
-            </StackPanel>
-        </ScrollViewer>
+        <WebView Grid.Row="1" x:Name="chatWebView"/>
     </Grid>
 </Page>
