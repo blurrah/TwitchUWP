@@ -56,7 +56,7 @@ namespace TwitchUWP
             chatWebView.LoadCompleted += chatWebView_LoadCompleted;
             chatWebView.Navigate(uri);
 
-            //loadVideo(streamer.name);
+            loadVideo(streamer.name);
         }
 
         private async void loadVideo(string name) {
