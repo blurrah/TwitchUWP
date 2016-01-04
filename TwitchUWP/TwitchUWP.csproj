@@ -99,6 +99,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomMediaTransportControls.cs" />
     <Compile Include="DetailViewPage.xaml.cs">
       <DependentUpon>DetailViewPage.xaml</DependentUpon>
     </Compile>
