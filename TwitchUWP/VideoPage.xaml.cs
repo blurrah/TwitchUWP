@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using TwitchUWP.Models;
@@ -84,6 +85,18 @@ namespace TwitchUWP
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('chat-room')[0].setAttribute(\"style\", \"bottom:-70px\")" });
             }
             catch (Exception){ }    
+        }
+        
+        private void StreamPlayer_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            if (!StreamPlayer.IsFullWindow)
+            {
+                StreamPlayer.IsFullWindow = true;
+            }
+            else
+            {
+                StreamPlayer.IsFullWindow = false;
+            }
         }
     }
 }
