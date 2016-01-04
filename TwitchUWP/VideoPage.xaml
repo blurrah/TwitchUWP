@@ -14,7 +14,24 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Viewbox Stretch="Uniform" StretchDirection="Both"  Grid.Row="0">
-            <MediaElement Name="StreamPlayer" Width="640" Height="360" RealTimePlayback="True" PosterSource="Assets/VideoPreLoad.png" />
+            <MediaElement AreTransportControlsEnabled="True" Name="StreamPlayer" Width="640" Height="360" RealTimePlayback="True" PosterSource="Assets/VideoPreLoad.png">
+                <MediaElement.TransportControls>
+                    <MediaTransportControls IsFastForwardButtonVisible="False"
+                                            IsFastForwardEnabled="False" 
+                                            IsFastRewindButtonVisible="False" 
+                                            IsFastRewindEnabled="False" 
+                                            IsDoubleTapEnabled="True" 
+                                            IsPlaybackRateButtonVisible="False" 
+                                            IsPlaybackRateEnabled="False" 
+                                            IsSeekBarVisible="False" 
+                                            IsSeekEnabled="False" 
+                                            IsCompact="True" 
+                                            IsZoomButtonVisible="False" 
+                                            IsZoomEnabled="False" 
+                                            IsFullWindowButtonVisible="True" 
+                                            IsFullWindowEnabled="True"/>
+                </MediaElement.TransportControls>
+            </MediaElement>
         </Viewbox>
         <WebView Grid.Row="1" Height="Auto" x:Name="chatWebView"/>
     </Grid>
