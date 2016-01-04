@@ -16,7 +16,7 @@
         <Viewbox Stretch="Uniform" StretchDirection="Both"  Grid.Row="0">
             <MediaElement AreTransportControlsEnabled="True" Name="StreamPlayer" Width="640" Height="360" RealTimePlayback="True" PosterSource="Assets/VideoPreLoad.png" DoubleTapped="StreamPlayer_DoubleTapped">
                 <MediaElement.TransportControls>
-                    <MediaTransportControls IsFastForwardButtonVisible="False"
+                    <MediaTransportControls Name="StreamPlayerControls" IsFastForwardButtonVisible="False"
                                             IsFastForwardEnabled="False" 
                                             IsFastRewindButtonVisible="False" 
                                             IsFastRewindEnabled="False" 

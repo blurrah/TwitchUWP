@@ -7,12 +7,15 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using TwitchUWP.Models;
+using Windows.Devices.Sensors;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
 using Windows.Media.Streaming.Adaptive;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Text;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -21,6 +24,7 @@ using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Shapes;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -34,11 +38,19 @@ namespace TwitchUWP
 
         public ObservableCollection<Message> chatMessages { get; set; }
         public LiveStream liveStream { get; set; }
+        private SimpleOrientationSensor _sensor;
 
         public VideoPage()
         {
             this.InitializeComponent();
 
+            _sensor = SimpleOrientationSensor.GetDefault();
+            if (_sensor != null)
+            {
+                StreamPlayerControls.IsFullWindowButtonVisible = false;
+                StreamPlayerControls.IsFullWindowEnabled = false;
+                _sensor.OrientationChanged += new TypedEventHandler<SimpleOrientationSensor, SimpleOrientationSensorOrientationChangedEventArgs>(OrientationChanged);
+            } 
             var manager = SystemNavigationManager.GetForCurrentView();
             manager.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
 
@@ -60,7 +72,8 @@ namespace TwitchUWP
             loadVideo(streamer.name);
         }
 
-        private async void loadVideo(string name) {
+        private async void loadVideo(string name)
+        {
             Task t = TwitchHLSHelper.LoadTwitchStream(name, liveStream);
             await t;
 
@@ -84,18 +97,55 @@ namespace TwitchUWP
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('button primary float-right send-chat-button')[0].style.display='none';" });
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('chat-room')[0].setAttribute(\"style\", \"bottom:-70px\")" });
             }
-            catch (Exception){ }    
+            catch (Exception) { }
         }
-        
+
         private void StreamPlayer_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            if (!StreamPlayer.IsFullWindow)
+            if (_sensor == null)
             {
-                StreamPlayer.IsFullWindow = true;
+                if (!StreamPlayer.IsFullWindow)
+                {
+                    StreamPlayer.IsFullWindow = true;
+                }
+                else
+                {
+                    StreamPlayer.IsFullWindow = false;
+                }
             }
-            else
+        }
+
+
+        async private void OrientationChanged(object sender, SimpleOrientationSensorOrientationChangedEventArgs e)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                StreamPlayer.IsFullWindow = false;
+                DisplayOrientation(e.Orientation);
+            });
+        }
+
+        private void DisplayOrientation(SimpleOrientation orientation)
+        {
+            switch (orientation)
+            {
+                case SimpleOrientation.NotRotated:
+                    StreamPlayer.IsFullWindow = false;
+                    break;
+                case SimpleOrientation.Rotated90DegreesCounterclockwise:
+                    StreamPlayer.IsFullWindow = true;
+                    break;
+                case SimpleOrientation.Rotated180DegreesCounterclockwise:
+                    StreamPlayer.IsFullWindow = false;
+                    break;
+                case SimpleOrientation.Rotated270DegreesCounterclockwise:
+                    StreamPlayer.IsFullWindow = true;
+                    break;
+                case SimpleOrientation.Faceup:
+                    break;
+                case SimpleOrientation.Facedown:
+                    break;
+                default:
+                    break;
             }
         }
     }
