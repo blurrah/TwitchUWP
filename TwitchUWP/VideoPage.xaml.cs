@@ -98,6 +98,14 @@ namespace TwitchUWP
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('chat-room')[0].setAttribute(\"style\", \"bottom:-70px\")" });
             }
             catch (Exception) { }
+
+            if (_sensor != null)
+            {
+                try {
+                    await chatWebView.InvokeScriptAsync("eval", new string[] { "document.body.style.zoom = \"200%\"" });
+                }
+                catch (Exception) { }
+            }
         }
 
         private void StreamPlayer_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
