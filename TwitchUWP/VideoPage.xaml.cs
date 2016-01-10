@@ -93,9 +93,11 @@ namespace TwitchUWP
             try
             {
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('button glyph-only left tooltip')[0].style.display='none';" });
+                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('js-chat-colors chat-colors clearfix')[0].style.display='none';" });
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('textarea-contain')[0].style.display='none';" });
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('button primary float-right send-chat-button')[0].style.display='none';" });
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('chat-room')[0].setAttribute(\"style\", \"bottom:-70px\")" });
+                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('js-chat-settings chat-settings chat-menu dropmenu')[0].setAttribute(\"style\", \"bottom:100px\")" });
             }
             catch (Exception) { }
 
