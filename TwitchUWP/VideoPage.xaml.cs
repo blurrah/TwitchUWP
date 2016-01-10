@@ -39,6 +39,7 @@ namespace TwitchUWP
         public ObservableCollection<Message> chatMessages { get; set; }
         public LiveStream liveStream { get; set; }
         private SimpleOrientationSensor _sensor;
+        private Streamers.Channel streamer;
 
         public VideoPage()
         {
@@ -62,19 +63,18 @@ namespace TwitchUWP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            Streamers.Channel streamer = (Streamers.Channel)e.Parameter;
+            streamer = (Streamers.Channel)e.Parameter;
 
             Uri uri = new Uri("http://www.twitch.tv/" + streamer.name + "/chat?popout=");
 
             chatWebView.LoadCompleted += chatWebView_LoadCompleted;
             chatWebView.Navigate(uri);
 
-            loadVideo(streamer.name);
+            loadVideo(streamer.name, "chunked");
         }
 
-        private async void loadVideo(string name)
+        private async void loadVideo(string name, string quality)
         {
-            String quality = "chunked";
             Task t = TwitchHLSHelper.LoadTwitchStream(name, liveStream, quality);
             await t;
 
@@ -157,6 +157,15 @@ namespace TwitchUWP
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void qualityChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedTag = ((ComboBoxItem)QualityBox.SelectedItem).Tag.ToString();
+            if (streamer != null)
+            {
+                loadVideo(streamer.name, selectedTag);
             }
         }
     }

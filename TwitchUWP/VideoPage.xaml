@@ -33,6 +33,13 @@
                 </MediaElement.TransportControls>
             </MediaElement>
         </Viewbox>
+        <ComboBox Name="QualityBox" Grid.Row="0" HorizontalAlignment="Right" AllowDrop="True" SelectionChanged="qualityChanged">
+            <ComboBoxItem Tag="chunked" IsSelected="True">Source</ComboBoxItem>
+            <ComboBoxItem Tag="high" >High</ComboBoxItem>
+            <ComboBoxItem Tag="medium">Medium</ComboBoxItem>
+            <ComboBoxItem Tag="low">Low</ComboBoxItem>
+            <ComboBoxItem Tag="mobile">Mobile</ComboBoxItem>
+        </ComboBox>
         <WebView Grid.Row="1" Height="Auto" x:Name="chatWebView"/>
     </Grid>
 </Page>
