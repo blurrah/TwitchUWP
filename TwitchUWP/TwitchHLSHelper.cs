@@ -15,7 +15,7 @@ namespace TwitchUWP
 {
     public class TwitchHLSHelper
     {
-        public static async Task LoadTwitchStream(string channelName, LiveStream livestream) {
+        public static async Task LoadTwitchStream(string channelName, LiveStream livestream, string quality) {
             try
             {
                 AccessToken.RootObject accessToken = await GetTokenAsync(channelName);
@@ -26,7 +26,7 @@ namespace TwitchUWP
                 String token = accessToken.token;
                 String sig = accessToken.sig;
 
-                String resultje = await GetStreamListAsync(channelName, token, sig, randomInt);
+                String resultje = await GetStreamListAsync(channelName, token, sig, randomInt, quality);
 
                 livestream.sourceStream = resultje;
 
@@ -56,11 +56,11 @@ namespace TwitchUWP
         /// <param name="sig">Channel signature</param>
         /// <param name="random">Random integer payload</param>
         /// <returns>M3u8 file containing the streams</returns>
-        private static async Task<String> GetStreamListAsync(string channelName, string token, string sig, int random)
+        private static async Task<String> GetStreamListAsync(string channelName, string token, string sig, int random, string quality)
         {
             string streamListURL = String.Format("http://usher.twitch.tv/api/channel/hls/{0}.m3u8?player=twitchweb&token={1}&sig={2}&allow_audio_only=true&allow_source=true&type=any&p={3}", channelName, token, sig, random);
 
-            String realResult = await ParseM3UAsync(streamListURL);
+            String realResult = await ParseM3UAsync(streamListURL, quality);
 
             return realResult;
         }
@@ -76,7 +76,7 @@ namespace TwitchUWP
             return await response.Content.ReadAsStringAsync();
         }
 
-        private async static Task<String> ParseM3UAsync(string url)
+        private async static Task<String> ParseM3UAsync(string url, string quality)
         {
             HttpClient http = new HttpClient();
 
@@ -92,7 +92,7 @@ namespace TwitchUWP
 
                 for (int i = 0; i < lines.Length; i++)
                 {
-                    if (lines[i].Contains("#EXT-X-STREAM") && lines[i].Contains("VIDEO=\"chunked\""))
+                    if (lines[i].Contains("#EXT-X-STREAM") && lines[i].Contains("VIDEO=\"" + quality + "\""))
                     {
                         return lines[i + 1];
                     }

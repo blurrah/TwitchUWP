@@ -74,7 +74,8 @@ namespace TwitchUWP
 
         private async void loadVideo(string name)
         {
-            Task t = TwitchHLSHelper.LoadTwitchStream(name, liveStream);
+            String quality = "chunked";
+            Task t = TwitchHLSHelper.LoadTwitchStream(name, liveStream, quality);
             await t;
 
             Uri streamUrl = new Uri(liveStream.sourceStream);
