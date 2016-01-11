@@ -99,6 +99,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomMediaTransportControls.cs" />
     <Compile Include="DetailViewPage.xaml.cs">
       <DependentUpon>DetailViewPage.xaml</DependentUpon>
     </Compile>
@@ -152,6 +153,11 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="VideoPage.xaml">
       <SubType>Designer</SubType>

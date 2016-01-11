@@ -16,20 +16,22 @@
         <Viewbox Stretch="Uniform" StretchDirection="Both"  Grid.Row="0">
             <MediaElement AreTransportControlsEnabled="True" Name="StreamPlayer" Width="640" Height="360" RealTimePlayback="True" PosterSource="Assets/VideoPreLoad.png" DoubleTapped="StreamPlayer_DoubleTapped">
                 <MediaElement.TransportControls>
-                    <MediaTransportControls Name="StreamPlayerControls" IsFastForwardButtonVisible="False"
-                                            IsFastForwardEnabled="False" 
-                                            IsFastRewindButtonVisible="False" 
-                                            IsFastRewindEnabled="False" 
-                                            IsDoubleTapEnabled="True" 
-                                            IsPlaybackRateButtonVisible="False" 
-                                            IsPlaybackRateEnabled="False" 
-                                            IsSeekBarVisible="False" 
-                                            IsSeekEnabled="False" 
-                                            IsCompact="True" 
-                                            IsZoomButtonVisible="False" 
-                                            IsZoomEnabled="False" 
-                                            IsFullWindowButtonVisible="True" 
-                                            IsFullWindowEnabled="True"/>
+                    <local:CustomMediaTransportControls x:Name="StreamPlayerControls"
+                                                        IsFastForwardButtonVisible="False"
+                                                        IsFastForwardEnabled="False" 
+                                                        IsFastRewindButtonVisible="False" 
+                                                        IsFastRewindEnabled="False" 
+                                                        IsDoubleTapEnabled="True" 
+                                                        IsPlaybackRateButtonVisible="False" 
+                                                        IsPlaybackRateEnabled="False" 
+                                                        IsSeekBarVisible="False" 
+                                                        IsSeekEnabled="False" 
+                                                        IsCompact="True" 
+                                                        IsZoomButtonVisible="False" 
+                                                        IsZoomEnabled="False" 
+                                                        IsFullWindowButtonVisible="True" 
+                                                        IsFullWindowEnabled="True">
+                    </local:CustomMediaTransportControls>
                 </MediaElement.TransportControls>
             </MediaElement>
         </Viewbox>
