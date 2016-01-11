@@ -41,9 +41,23 @@ namespace TwitchUWP
         private SimpleOrientationSensor _sensor;
         private Streamers.Channel streamer;
 
+        public delegate void QualityChanged(string quality);
+        public static event QualityChanged OnQualityChanged;
+        private static string _Quality = "chunked";
+        public static string Quality
+        {
+            get { return _Quality; }
+            set
+            {
+                _Quality = value;
+                OnQualityChanged(_Quality);
+            }
+        }
+
         public VideoPage()
         {
             this.InitializeComponent();
+            VideoPage.OnQualityChanged += new QualityChanged(VideoPage_OnQualityChanged);
 
             _sensor = SimpleOrientationSensor.GetDefault();
             if (_sensor != null)
@@ -70,7 +84,7 @@ namespace TwitchUWP
             chatWebView.LoadCompleted += chatWebView_LoadCompleted;
             chatWebView.Navigate(uri);
 
-            loadVideo(streamer.name, "chunked");
+            loadVideo(streamer.name, _Quality);
         }
 
         private async void loadVideo(string name, string quality)
@@ -127,6 +141,7 @@ namespace TwitchUWP
         }
 
 
+
         async private void OrientationChanged(object sender, SimpleOrientationSensorOrientationChangedEventArgs e)
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -160,13 +175,13 @@ namespace TwitchUWP
             }
         }
 
-        private void qualityChanged(object sender, SelectionChangedEventArgs e)
+        void VideoPage_OnQualityChanged(String quality)
         {
-            var selectedTag = ((ComboBoxItem)QualityBox.SelectedItem).Tag.ToString();
             if (streamer != null)
             {
-                loadVideo(streamer.name, selectedTag);
+                loadVideo(streamer.name, quality);
             }
         }
+
     }
 }

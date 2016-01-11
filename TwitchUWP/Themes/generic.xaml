@@ -63,7 +63,7 @@
                                                                     <Ellipse x:Name='ellipse'
                               Stroke='{TemplateBinding Background}'
                               StrokeThickness='2'
-                              Fill='White'/>
+                              Fill='#B9A3E3'/>
                                                                 </ControlTemplate>
                                                             </Setter.Value>
                                                         </Setter>
@@ -608,6 +608,20 @@
                                                 <AppBarButton.Icon>
                                                     <FontIcon Glyph="&#xEB9E;"/>
                                                 </AppBarButton.Icon>
+                                            </AppBarButton>
+                                            <AppBarButton x:Name="QualityButton" 
+                                             Icon="Setting" 
+                                             Style="{StaticResource AppBarButtonStyle}" 
+                                             MediaTransportControlsHelper.DropoutOrder="3">
+                                                <AppBarButton.Flyout>
+                                                    <MenuFlyout x:Name="QualityOptions">
+                                                        <MenuFlyoutItem Tag="chunked" x:Name="chunked" Text="Source" Click="option_Click" />
+                                                        <MenuFlyoutItem Tag="high" x:Name="high" Text="High" Click="option_Click"  />
+                                                        <MenuFlyoutItem Tag="medium" x:Name="medium" Text="Medium" Click="option_Click"  />
+                                                        <MenuFlyoutItem Tag="low" x:Name="low" Text="Low" Click="option_Click"  />
+                                                        <MenuFlyoutItem Tag="mobile" x:Name="mobile" Text="Mobile" Click="option_Click"  />
+                                                    </MenuFlyout>
+                                                </AppBarButton.Flyout>
                                             </AppBarButton>
                                             <AppBarButton x:Name='CastButton'
                                   Style='{StaticResource AppBarButtonStyle}'
