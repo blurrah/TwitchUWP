@@ -108,6 +108,7 @@ namespace TwitchUWP
             try
             {
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('button glyph-only left tooltip')[0].style.display='none';" });
+                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('i-am-new')[0].style.display='none';" });
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('js-chat-colors chat-colors clearfix')[0].style.display='none';" });
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('textarea-contain')[0].style.display='none';" });
                 await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('button primary float-right send-chat-button')[0].style.display='none';" });
@@ -119,7 +120,7 @@ namespace TwitchUWP
             if (_sensor != null)
             {
                 try {
-                    await chatWebView.InvokeScriptAsync("eval", new string[] { "document.body.style.zoom = \"200%\"" });
+                    await chatWebView.InvokeScriptAsync("eval", new string[] { "document.body.style.zoom = \"250%\"" });
                 }
                 catch (Exception) { }
             }
