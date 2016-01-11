@@ -26,7 +26,7 @@
                             <!--New CommandBar Style-->
                             <Style x:Key='CommandBarStyle' TargetType='CommandBar'>
                                 <Setter Property='Height' Value='{ThemeResource MTCMediaButtonHeight}' />
-                                <Setter Property='Background' Value='#6441A5' />
+                                <Setter Property='Background' Value='Transparent' />
                             </Style>
 
                             <!--Style for Error Message text-->
