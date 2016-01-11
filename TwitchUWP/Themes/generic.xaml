@@ -26,7 +26,7 @@
                             <!--New CommandBar Style-->
                             <Style x:Key='CommandBarStyle' TargetType='CommandBar'>
                                 <Setter Property='Height' Value='{ThemeResource MTCMediaButtonHeight}' />
-                                <Setter Property='Background' Value='Transparent' />
+                                <Setter Property='Background' Value='#6441A5' />
                             </Style>
 
                             <!--Style for Error Message text-->
@@ -63,7 +63,7 @@
                                                                     <Ellipse x:Name='ellipse'
                               Stroke='{TemplateBinding Background}'
                               StrokeThickness='2'
-                              Fill='{TemplateBinding Foreground}'/>
+                              Fill='White'/>
                                                                 </ControlTemplate>
                                                             </Setter.Value>
                                                         </Setter>
@@ -196,7 +196,7 @@
                                                             <RowDefinition Height="18" />
                                                         </Grid.RowDefinitions>
                                                         <Rectangle x:Name="HorizontalTrackRect"
-                                Fill="{TemplateBinding Background}"
+                                Fill="#B9A3E3"
                                 Height="{ThemeResource SliderTrackThemeHeight}"
                                 Grid.Row="1"
                                 Grid.ColumnSpan="3" />
@@ -207,31 +207,31 @@
                                   HorizontalAlignment='Stretch'
                                   VerticalAlignment='Center'/>
                                                         <Rectangle x:Name="HorizontalDecreaseRect"
-                                Fill="{TemplateBinding Foreground}"
+                                Fill="#B9A3E3"
                                 Grid.Row="1" />
                                                         <TickBar x:Name="TopTickBar"
                                 Visibility="Collapsed"
-                                Fill="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+                                Fill="#B9A3E3"
                                 Height="{ThemeResource SliderOutsideTickBarThemeHeight}"
                                 VerticalAlignment="Bottom"
                                 Margin="0,0,0,4"
                                 Grid.ColumnSpan="3" />
                                                         <TickBar x:Name="HorizontalInlineTickBar"
                                 Visibility="Collapsed"
-                                Fill="{ThemeResource SystemControlBackgroundAltHighBrush}"
+                                Fill="#B9A3E3"
                                 Height="{ThemeResource SliderTrackThemeHeight}"
                                 Grid.Row="1"
                                 Grid.ColumnSpan="3" />
                                                         <TickBar x:Name="BottomTickBar"
                                 Visibility="Collapsed"
-                                Fill="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+                                Fill="#B9A3E3"
                                 Height="{ThemeResource SliderOutsideTickBarThemeHeight}"
                                 VerticalAlignment="Top"
                                 Margin="0,4,0,0"
                                 Grid.Row="2"
                                 Grid.ColumnSpan="3" />
                                                         <Thumb x:Name="HorizontalThumb"
-                                Background="{ThemeResource SystemControlForegroundAccentBrush}"
+                                Background="#B9A3E3"
                                 Style="{StaticResource SliderThumbStyle}"
                                 DataContext="{TemplateBinding Value}"
                                 Height="24"
@@ -254,37 +254,37 @@
                                                             <ColumnDefinition Width="18" />
                                                         </Grid.ColumnDefinitions>
                                                         <Rectangle x:Name="VerticalTrackRect"
-                                Fill="{TemplateBinding Background}"
+                                Fill="#B9A3E3"
                                 Width="{ThemeResource SliderTrackThemeHeight}"
                                 Grid.Column="1"
                                 Grid.RowSpan="3" />
                                                         <Rectangle x:Name="VerticalDecreaseRect"
-                                Fill="{TemplateBinding Foreground}"
+                                Fill="#B9A3E3"
                                 Grid.Column="1"
                                 Grid.Row="2" />
                                                         <TickBar x:Name="LeftTickBar"
                                 Visibility="Collapsed"
-                                Fill="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+                                Fill="#B9A3E3"
                                 Width="{ThemeResource SliderOutsideTickBarThemeHeight}"
                                 HorizontalAlignment="Right"
                                 Margin="0,0,4,0"
                                 Grid.RowSpan="3" />
                                                         <TickBar x:Name="VerticalInlineTickBar"
                                 Visibility="Collapsed"
-                                Fill="{ThemeResource SystemControlBackgroundAltHighBrush}"
+                                Fill="#B9A3E3"
                                 Width="{ThemeResource SliderTrackThemeHeight}"
                                 Grid.Column="1"
                                 Grid.RowSpan="3" />
                                                         <TickBar x:Name="RightTickBar"
                                 Visibility="Collapsed"
-                                Fill="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+                                Fill="#B9A3E3"
                                 Width="{ThemeResource SliderOutsideTickBarThemeHeight}"
                                 HorizontalAlignment="Left"
                                 Margin="4,0,0,0"
                                 Grid.Column="2"
                                 Grid.RowSpan="3" />
                                                         <Thumb x:Name="VerticalThumb"
-                                Background="{ThemeResource SystemControlForegroundAccentBrush}"
+                                Background="#B9A3E3"
                                 Style="{StaticResource SliderThumbStyle}"
                                 DataContext="{TemplateBinding Value}"
                                 Width="8"
@@ -510,7 +510,7 @@
 
                         <Border x:Name='ControlPanel_ControlPanelVisibilityStates_Border'>
                             <Grid x:Name='ControlPanelGrid'
-                Background="Transparent"
+                Background="#6441A5"
                 VerticalAlignment='Bottom'
                 RenderTransformOrigin='0.5,0.5'>
                                 <Grid.RenderTransform>
@@ -528,7 +528,7 @@
                                 </Grid.RowDefinitions>
                                 <Border x:Name="ErrorBorder"  Width='320' Height='96'
                 Grid.ColumnSpan='3'
-                HorizontalAlignment="Center" Background="Transparent"
+                HorizontalAlignment="Center" Background="#6441A5"
                 Visibility='Collapsed'>
                                     <TextBlock x:Name='ErrorTextBlock'
                   Style="{StaticResource MediaTextBlockStyle}"
