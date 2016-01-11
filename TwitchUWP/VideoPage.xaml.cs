@@ -35,7 +35,6 @@ namespace TwitchUWP
     /// </summary>
     public sealed partial class VideoPage : Page
     {
-
         public ObservableCollection<Message> chatMessages { get; set; }
         public LiveStream liveStream { get; set; }
         private SimpleOrientationSensor _sensor;
@@ -69,9 +68,7 @@ namespace TwitchUWP
             var manager = SystemNavigationManager.GetForCurrentView();
             manager.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
 
-            chatMessages = new ObservableCollection<Message>();
             liveStream = new LiveStream();
-
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
