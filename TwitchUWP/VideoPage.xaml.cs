@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -102,24 +103,28 @@ namespace TwitchUWP
 
         private async void chatWebView_LoadCompleted(object sender, NavigationEventArgs e)
         {
-            try
-            {
-                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('button glyph-only left tooltip')[0].style.display='none';" });
-                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('i-am-new')[0].style.display='none';" });
-                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('js-chat-colors chat-colors clearfix')[0].style.display='none';" });
-                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('textarea-contain')[0].style.display='none';" });
-                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('button primary float-right send-chat-button')[0].style.display='none';" });
-                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('chat-room')[0].setAttribute(\"style\", \"bottom:-70px\")" });
-                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('js-chat-settings chat-settings chat-menu dropmenu')[0].setAttribute(\"style\", \"bottom:100px\")" });
-            }
-            catch (Exception) { }
 
             if (_sensor != null)
             {
-                try {
-                    await chatWebView.InvokeScriptAsync("eval", new string[] { "document.body.style.zoom = \"250%\"" });
+                try
+                {
+                    await chatWebView.InvokeScriptAsync("eval", new string[] { "document.body.style.zoom = \"250%\";" });
                 }
                 catch (Exception) { }
+            }
+
+            try
+            {
+                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('button glyph-only left tooltip')[0].style.display = 'none';" });
+                await chatWebView.InvokeScriptAsync("eval", new string[] { "if (document.getElementsByClassName('i-am-new').length > 0) { document.getElementsByClassName('i-am-new')[0].style.display = 'none'; }" });
+                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('textarea-contain')[0].style.display = 'none';" });
+                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('button primary float-right send-chat-button')[0].style.display=  'none';" });
+                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('chat-room')[0].setAttribute(\"style\", \"bottom:-70px\");" });
+                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('js-chat-settings chat-settings chat-menu dropmenu')[0].setAttribute(\"style\", \"bottom:100px\");" });
+                await chatWebView.InvokeScriptAsync("eval", new string[] { "document.getElementsByClassName('js-chat-colors chat-colors clearfix')[0].style.display = 'none';" });
+            }
+            catch (Exception x) {
+                Debug.WriteLine(x);
             }
         }
 
