@@ -46,7 +46,16 @@ namespace TwitchUWP
         {
             if (e.Parameter != null && NavFrame.CanGoBack)
             {
-                PageTitle.Text = e.Parameter.ToString();
+                if (e.Parameter is Streamers.Channel)
+                {
+                    Streamers.Channel channel = (Streamers.Channel)e.Parameter;
+
+                    PageTitle.Text = channel.display_name;
+                } else
+                {
+                    PageTitle.Text = e.Parameter.ToString();
+                }
+               
             }
             else
             {
