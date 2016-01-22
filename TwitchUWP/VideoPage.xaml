@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="TwitchUWP.VideoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TwitchUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:TwitchUWP.Models"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Viewbox Stretch="Uniform" StretchDirection="Both"  Grid.Row="0">
+            <MediaElement AreTransportControlsEnabled="True" Name="StreamPlayer" Width="640" Height="360" RealTimePlayback="True" PosterSource="Assets/VideoPreLoad.png" DoubleTapped="StreamPlayer_DoubleTapped">
+                <MediaElement.TransportControls>
+                    <local:CustomMediaTransportControls x:Name="StreamPlayerControls"
+                                                        IsFastForwardButtonVisible="False"
+                                                        IsFastForwardEnabled="False" 
+                                                        IsFastRewindButtonVisible="False" 
+                                                        IsFastRewindEnabled="False" 
+                                                        IsDoubleTapEnabled="True" 
+                                                        IsPlaybackRateButtonVisible="False" 
+                                                        IsPlaybackRateEnabled="False" 
+                                                        IsSeekBarVisible="False" 
+                                                        IsSeekEnabled="False" 
+                                                        IsCompact="True" 
+                                                        IsZoomButtonVisible="False" 
+                                                        IsZoomEnabled="False" 
+                                                        IsFullWindowButtonVisible="True" 
+                                                        IsFullWindowEnabled="True">
+                    </local:CustomMediaTransportControls>
+                </MediaElement.TransportControls>
+            </MediaElement>
+        </Viewbox>
+        
+        <WebView Grid.Row="1" Height="Auto" x:Name="chatWebView"/>
+    </Grid>
+</Page>
