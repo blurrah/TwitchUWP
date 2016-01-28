@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <ScrollViewer>
+        <ScrollViewer Grid.RowSpan="2">
             <GridView Name="StreamsListView"
                       ItemsSource="{x:Bind streams}" 
                       IsItemClickEnabled="True" 
